@@ -1,2 +1,2 @@
-# vicious-tomato-password-generator
+# Vicious Tomato Password Generator
 The greatest password manager known to life, the universe, and everything
