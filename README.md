@@ -9,6 +9,7 @@ Download repo using git clone or simply use the big ol' "Download ZIP" button.
 See language specifics for their usage.  
 
 ### Python usage:
+(This script requires python version >= 2.6)  
 Arguments should be a list of languages. To get the list of  
 supported languages, simply use the single argument "list".  
 If one would like to specify number of words produced, use  
