@@ -10,7 +10,7 @@ Intense Tomato Password Generator 1.0
     If one would like to specify number of words produced, use
     the flag "-n" followed by an integer.
 
-    ex: ./tomatopass swedish english -n 5
+    ex: ./tomatopass.py swedish english -n 5
 
 Written by Fredrik Johansson
 """
