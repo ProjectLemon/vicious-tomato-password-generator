@@ -4,7 +4,7 @@ This generator produces 4 (default) words from a given language to be used as a 
 
 The principle behind the algorithm of this password generator and why it is so secure is well described here: http://security.stackexchange.com/a/6096 
 
-This repo includes a python script and a c program (comming later).  
+This repo includes a python script and a c program.  
 
 ### Install:
 Download repo using git clone or simply use the big ol' "Download ZIP" button.  
