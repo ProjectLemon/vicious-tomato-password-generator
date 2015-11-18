@@ -20,7 +20,7 @@ the flag "-n" followed by an integer.
     ex: ./tomatopass.py swedish english -n 5 
 
 ### C usage:
-(Currently only (official) support for Linux/UNIX systems) \n
+(Currently only (official) support for Linux/UNIX systems)
 The C-version of this program uses the same arguments as the python version
 
 To build the program run the following command from the root folder of this repo:
