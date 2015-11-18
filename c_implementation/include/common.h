@@ -102,7 +102,7 @@ FILE *sfopen(char *path);
 * Return:     (char **) An array containing the lines of the file
 * Note:       The lines of the file can be no more than 1024 char
 */
-char **read_file(FILE *);
+char **read_file(FILE *fp, int size[]);
 
 /**
 * Creates a new array of size n and fills it with random values

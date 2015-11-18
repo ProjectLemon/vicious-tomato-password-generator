@@ -48,7 +48,7 @@ void error(char *message){
 void *salloc(size_t size){
   void *p = malloc(size);
   if(!p){
-    error("ERROR: out of memmory");
+    error("ERROR: out of memmory\n");
   }
   mem_reg(p);
   return p;
@@ -106,7 +106,7 @@ FILE *sfopen(char *path){
 * Return:     (char **) An array containing the lines of the file
 * Note:       The lines of the file can be no more than 1024 char
 */
-char **read_file(FILE *fp){
+char **read_file(FILE *fp, int size[]){
   int i = 0;
   char *buffer = salloc(BUFSIZ*sizeof(char));
   char **lines = NULL;
@@ -117,7 +117,9 @@ char **read_file(FILE *fp){
     lines = realloc(lines, i*sizeof(char **));
     lines[i-1] = line;
   }
+  size[0] = i;
   mem_reg(lines);
+  fclose(fp);
   return lines;
 }
 

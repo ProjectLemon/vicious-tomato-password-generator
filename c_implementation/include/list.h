@@ -3,12 +3,14 @@
 #ifndef __list__
 #define __list__
 
-typedef struct list_item {
+typedef struct list_head {
     int size;
+    struct list_item **item;
+} list;
+
+typedef struct list_item {
     char *data;
 } list_item;
-
-typedef list_item* list;
 
 
 /**
@@ -66,5 +68,12 @@ bool equals(list_item *item1, list_item *item2);
 * Parameter 1: (int) Size of the list
 */
 int list_get_size(list *list);
+
+/*
+* This function will remove the list and every item in it
+*
+*  Parameter 1: (list *) the list to remove
+*/
+void list_free(list *list);
 
 #endif

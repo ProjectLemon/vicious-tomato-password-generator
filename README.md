@@ -17,4 +17,20 @@ supported languages, simply use the single argument "list".
 If one would like to specify number of words produced, use  
 the flag "-n" followed by an integer.  
     
-    ex: ./tomatopass.py swedish english -n 5  
+    ex: ./tomatopass.py swedish english -n 5 
+
+### C usage:
+(Currently only (official) support for Linux/UNIX systems)
+The C-version of this program uses the same arguments as the python version
+
+To build the program run the following command from the root folder of this repo:
+
+    cd/c_implementation/src/ && make
+
+(This requires gcc)
+
+To run the program, simply execute:
+
+    ./tomatopass <arguments>
+
+Where <arguments> should be excanged to the argument you wish to run the program with.

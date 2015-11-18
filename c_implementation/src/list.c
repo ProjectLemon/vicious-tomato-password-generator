@@ -6,16 +6,15 @@
 * Return:     (list *) The new list
 */
 list *new_list() {
-    list *l = salloc(sizeof(list *));
-    l[0] = salloc(sizeof(list_item *));
-    l[0] -> size = 0;
+    list *l = calloc( 1, sizeof(list) );
+    l->item = calloc( 1, sizeof(list_item *) ); 
+    l->size = 0;
     return l;
 }
 
 list_item *new_list_item(char *data) {
-    list_item *temp = salloc( sizeof(list_item *) );
+    list_item *temp = calloc( 1, sizeof(list_item) );
     temp->data = data;
-    temp->size = 0;
     return temp;
 }
 
@@ -26,10 +25,9 @@ list_item *new_list_item(char *data) {
 * Parameter 2:  (list_item *) The item to add 
 */
 list *list_add(list *li, list_item *item) {
-    list *l = realloc( li, (++li[0]->size*sizeof(list_item *)) );
-    item->size = li[0]->size;
-    l[li[0]->size-1] = item;
-    return l;
+    li -> item = realloc( li -> item, ++(li->size)*sizeof(void *) );
+    li -> item[(li->size)-1] = item;
+    return li;
 }
 
 /**
@@ -49,8 +47,8 @@ void list_remove(list *l, int index);
 * Reutn:            (bool) True/false if item was in list
 */
 bool list_contains(list *list, list_item *item) {
-    for (int i = 0; i < list[0]->size; ++i) {
-        if ( equals(list[i], item) ) { return TRUE; }
+    for (int i = 0; i < list->size; ++i) {
+        if ( equals(list->item[i], item) ) { return TRUE; }
     }
     return FALSE;
 }
@@ -71,5 +69,19 @@ bool equals(list_item *item1, list_item *item2) {
 * Parameter 1: (int) Size of the list
 */
 int list_get_size(list *list) {
-    return list[0]->size;
+    return list->size;
+}
+
+/*
+* This function will remove the list and every item in it
+*
+*  Parameter 1: (list *) the list to remove
+*/
+void list_free(list *list) {
+    int size = list->size;
+    for (int i = 0; i < size ; ++i) {
+        free(list->item[i]);
+    }
+    free(list->item);
+    free(list);
 }
