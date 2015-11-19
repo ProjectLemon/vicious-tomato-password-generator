@@ -91,7 +91,7 @@ void mem_reg(void *p){
 * Note:       Will open the file in r+ mode
 */
 FILE *sfopen(char *path){
-  FILE *fp = fopen(path, "r+");
+  FILE *fp = fopen(path, "r");
   if(!fp){
     error("ERROR: could not open file");
   }

@@ -22,11 +22,6 @@
 static int NR_OF_WORDS = 4; 
 static const char dict_path[] = "../dictionaries/";
 
-void set_random_seed() {
-  timeval seed;
-  gettimeofday(&seed, NULL);
-  srand(seed.tv_usec * seed.tv_sec);
-}
 char *remove_extension(char *in_string) {
   int name_length = 0;
   char *out_string = NULL;
@@ -101,11 +96,11 @@ void get_random_words(char **words, list *selected_dict) {
     if (list_get_size(selected_dict) <= 1) {
       random[0] = 0;
     } else {
-      random[0] = rand()%list_get_size(selected_dict);
+      random[0] = arc4random_uniform(list_get_size(selected_dict));
     }
 
     //Pick a random word from the desired dictionaries
-    random[1] = rand()%dict_length[random[0]];
+    random[1] = arc4random_uniform(dict_length[random[0]]);
     words[i] = salloc(BUFSIZ*sizeof(char));
     strncpy(words[i], dict_contents[random[0]][random[1]],BUFSIZ);
   } 
@@ -113,7 +108,7 @@ void get_random_words(char **words, list *selected_dict) {
 void pick_out_words(char **new_words, char **old_words) {
   for (int i = 0; i < NR_OF_WORDS; ++i) {
     new_words[i] = salloc(BUFSIZ*sizeof(char));
-    strncpy(new_words[i], old_words[rand()%NR_OF_WORDS], BUFSIZ);
+    strncpy(new_words[i], old_words[arc4random_uniform(NR_OF_WORDS)], BUFSIZ);
     for (int j = 0; j < BUFSIZ; ++j) {
       if (new_words[i][j] == '\n') {
         new_words[i][j] = ' ';
@@ -140,7 +135,9 @@ void check_input(int argc, char **argv, list *available_dict, list *selected_dic
     
     //open specified dictionaries
     else if ( list_contains(available_dict, argument) ) {
-      list_add(selected_dict, new_list_item(argv[i]));
+        if( list_contains(selected_dict, argument) == FALSE) {
+          list_add(selected_dict, new_list_item(argv[i]));
+        }
     }
 
     //something went wrong. Print usages and exit
@@ -170,7 +167,6 @@ int main(int argc, char **argv) {
   if( list_get_size(selected_dict) > 0 ) {
     char **words = salloc(NR_OF_WORDS*sizeof(char **));
     char **new_words = salloc(NR_OF_WORDS*sizeof(char **));
-    set_random_seed();
     get_random_words(words, selected_dict);
     pick_out_words(new_words, words);
     print_result(new_words);
