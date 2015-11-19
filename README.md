@@ -6,6 +6,7 @@ The principle behind the algorithm of this password generator and why it is so s
 
 (Short summary of the above link)
 This password generator creates secure passwords because they are:
+
 1. Long (brute force persistent)
 
 2. Easy to memorize (Can be saved inside your head)
