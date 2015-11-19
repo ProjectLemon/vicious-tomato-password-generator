@@ -4,11 +4,12 @@ Intense Tomato Password Generator 1.0
   This generator produces 4 (default) words from a given
   language to be used as a password.
 
-  Usage:
-    Arguments should be a list of languages. To get the list of
-    supported languages, simply use the single argument "list".
-    If one would like to specify number of words produced, use
-    the flag "-n" followed by an integer.
+  Arguments:
+    -h, --help    show this help dialog
+    -n <words>    number of words to include
+    list          prints a list of supported languages
+    <langauge>    list a languages from which the words will
+                  be choosen from
 
     ex: ./tomatopass.py swedish english -n 5
 
@@ -35,7 +36,6 @@ def get_language(lang):
 
 def print_error(error):
     print(error)
-    print()
     print(readme)
     sys.exit()
 
@@ -74,17 +74,26 @@ else:
             langs.append(arg)
         else:
             print_error('Error: Language was not found')
+    
+    if len(langs) == 0:
+        print_error('Error: No language was set')
+    elif num_of_words < 1:
+        print_error("Error: Number of words can't below 1")
 
     # randomize password from word list:
     generator = SystemRandom()
     words = []
     for lang in langs:
         words.extend(get_language(lang))
-    password = [words[generator.randint(0, len(words))][:-1]
-                  for x in range(num_of_words)]
+    #password = [words[generator.randint(0, len(words))][:-1]
+    #              for x in range(num_of_words)]
     # [:-1] to remove '\n' from words
 
+    password = []
+    for i in range(num_of_words):
+        password.append(words[generator.randint(0, len(words))][:-1])
+
+    print('Your new password is:\n    ', end='')
     for word in password:
         print(word, end=' ')
     print()
-

@@ -1,0 +1,7 @@
+
+# Exclude compiled files
+tomatopass.dSYM
+tomatopass.o
+tomatopass
+common.o
+list.o
