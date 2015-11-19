@@ -4,6 +4,12 @@ This generator produces 4 (default) words from a given language to be used as a 
 
 The principle behind the algorithm of this password generator and why it is so secure is well described here: http://security.stackexchange.com/a/6096 
 
+(Short summary of the above link)
+This password generator creates secure passwords because they are:
+1. Long (brute force persistent)
+2. Easy to memorize (Can be saved inside your head)
+3. Completly random (Prevents dictionary optimizations)
+
 This repo includes a python script and a c program.  
 
 ### Install:
